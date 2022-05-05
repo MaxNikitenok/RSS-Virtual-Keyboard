@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500&family=Jura:wght@300;400;500');
+/*
+font-family: 'Comfortaa', cursive;
+font-family: 'Jura', sans-serif;
+*/
+html {
+    background-color: rgb(23, 26, 27);
+}
+html,
+body {
+    font-family: 'Comfortaa', cursive;
+    font-weight: 300;
+    font-style: italic;
+    height: 100%;
+}
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 900px;
+    margin: 0 auto;
+    
+}
+.input-wrapper input{
+    background-color: rgb(77, 82, 85);
+    width: 892px;
+    height: 150px;
+    margin: 50px 0px 10px 0px;
+    border-radius: 7px;
+}
+.keyboard-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.line {
+    display: flex;
+    gap: 6px;
+    
+}
+.service-keys {
+    font-size: 16px;
+    border-radius: 3px;
+    height: 45px;
+    background-color: rgb(42, 47, 49);
+}
+.key {
+    min-width: 55px;
+    height: 45px;
+    font-size: 25px;
+    border-radius: 3px;
+    text-align: center;
+    background-color: rgb(77, 82, 85);
+}
+#backspace {
+    width: 100%;
+}
+#tab {
+    width: 100%;
+}
+#del {
+    min-width: 45px;
+}
+#caps-lock {
+    width: 70%;
+}
+#enter {
+    width: 100%;
+}
+.shift {
+    width: 100%;
+}
+.ctrl {
+    min-width: 65px;
+}
+#win,
+.alt {
+    min-width: 55px;
+}
+#space {
+    width: 100%;
+}
+#page-left,
+#page-right {
+    min-width: 45px;
+}
+#up-down {
+    display: flex;
+    flex-direction: column;
+    min-width: 45px;
+    height: 45px;
+    gap: 2px;
+}
+.page-up-down {
+    border-radius: 3px;
+    height: 50%;
+    background-color: rgb(42, 47, 49);
+}
