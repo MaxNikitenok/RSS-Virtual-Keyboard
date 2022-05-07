@@ -4,7 +4,7 @@ font-family: 'Comfortaa', cursive;
 font-family: 'Jura', sans-serif;
 */
 html {
-    background-color: rgb(23, 26, 27);
+    background-color: rgb(53, 52, 58)
 }
 html,
 body {
@@ -20,7 +20,7 @@ body {
     margin: 0 auto;
     
 }
-.input-wrapper input{
+.input{
     background-color: rgb(77, 82, 85);
     width: 892px;
     height: 150px;
@@ -29,55 +29,64 @@ body {
 }
 .keyboard-wrapper {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 6px;
+    flex-wrap: wrap;
 }
-.line {
+.service-key {
     display: flex;
-    gap: 6px;
-    
-}
-.service-keys {
     font-size: 16px;
     border-radius: 3px;
     height: 45px;
     background-color: rgb(42, 47, 49);
 }
+.service-key:active {
+    background-color: aqua;
+    box-shadow: 0px 0px 10px aqua;
+}
 .key {
-    min-width: 55px;
+    min-width: 53px;
     height: 45px;
     font-size: 25px;
     border-radius: 3px;
     text-align: center;
     background-color: rgb(77, 82, 85);
 }
-#backspace {
-    width: 100%;
+.key:active {
+    background-color: aqua;
+    box-shadow: 0px 0px 10px aqua;
 }
-#tab {
-    width: 100%;
+#Backspace {
+    flex-grow: 1;
 }
-#del {
-    min-width: 45px;
-}
-#caps-lock {
-    width: 70%;
-}
-#enter {
-    width: 100%;
-}
-.shift {
-    width: 100%;
-}
-.ctrl {
+#Tab {
     min-width: 65px;
 }
-#win,
-.alt {
-    min-width: 55px;
+#Delete {
+    flex-grow: 1;
 }
-#space {
-    width: 100%;
+#CapsLock {
+    min-width: 110px;
+}
+#Enter {
+    flex-grow: 1;
+}
+#ShiftLeft {
+    min-width: 135px;
+}
+#ShiftRight{
+    min-width: 110px;
+}
+#ControlLeft,
+#ControlRight {
+    min-width: 65px;
+}
+#AltLeft,
+#AltRight {
+    min-width: 65px;
+}
+#Space {
+    min-width: 382px;
 }
 #page-left,
 #page-right {
@@ -90,8 +99,24 @@ body {
     height: 45px;
     gap: 2px;
 }
-.page-up-down {
-    border-radius: 3px;
-    height: 50%;
-    background-color: rgb(42, 47, 49);
+#ArrowLeft,
+#ArrowRight {
+    min-width: 53px;
+}
+#ArrowUp {
+    position: absolute;
+    min-width: 53px;
+    height: 22px;
+    right: 285px;
+    top: 428px;
+}
+#ArrowDown {
+    position: relative;
+    min-width: 53px;
+    height: 22px;
+    top: 23px;
+}
+.active {
+    background-color: aqua;
+    box-shadow: 0px 0px 10px aqua;
 }

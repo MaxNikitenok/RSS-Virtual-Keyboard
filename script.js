@@ -1,50 +1,92 @@
-let lineZeroEn = [96, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 45, 61]
-let lineZeroEnShift = [126, 33, 64, 35, 36, 37, 94, 38, 42, 40, 41, 95, 43]
+let En = [
+    ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=','backspace'],
+    ['tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\\', 'delete'],
+    ['caps lock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', "'", 'enter'],
+    ['shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', 'U', 'shift'],
+    ['ctrl', 'Alt', '', 'Alt', 'ctrl', 'L', 'D', 'R']
+]
+let EnShift = [
+    ['~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+','backspace'],
+    ['tab', 'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', '{', '}', '|', 'delete'],
+    ['caps lock', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', ':', '"', 'enter'],
+    ['shift', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', '<', '>', '?', 'U', 'shift'],
+    ['ctrl', 'Alt', '', 'Alt', 'ctrl', 'L', 'D', 'R']
+]
+let Ru = [
+    ['ё', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=','backspace'],
+    ['tab', 'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ', '\\', 'delete'],
+    ['caps lock', 'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э', 'enter'],
+    ['shift', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', '.', 'U', 'shift'],
+    ['ctrl', 'Alt', '', 'Alt', 'ctrl', 'L', 'D', 'R']
+]
+let RuShift = [
+    ['Ё', '!', '"', '№', ';', '%', ':', '?', '*', '(', ')', '_', '+','backspace'],
+    ['tab', 'Й', 'Ц', 'У', 'К', 'Е', 'Н', 'Г', 'Ш', 'Щ', 'З', 'Х', 'Ъ', '/', 'delete'],
+    ['caps lock', 'Ф', 'Ы', 'В', 'А', 'П', 'Р', 'О', 'Л', 'Д', 'Ж', 'Э', 'enter'],
+    ['shift', 'Я', 'Ч', 'С', 'М', 'И', 'Т', 'Ь', 'Б', 'Ю', ',', 'U', 'shift'],
+    ['ctrl', 'Alt', '', 'Alt', 'ctrl', 'L', 'D', 'R']
+]
 
-let lineZeroRu = [1105, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 45, 61]
-let lineZeroRuShift = [1025, 33, 34, 8470, 59, 37, 58, 63, 42, 40, 41, 95, 43]
+let codeOfKey = [
+    ['Backquote', 'Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5', 'Digit6', 'Digit7', 'Digit8', 'Digit9', 'Digit0', 'Minus', 'Equal','Backspace'],
+    ['Tab', 'KeyQ', 'KeyW', 'KeyE', 'KeyR', 'KeyT', 'KeyY', 'KeyU', 'KeyI', 'KeyO', 'KeyP', 'BracketLeft', 'BracketRight', 'Backslash', 'Delete'],
+    ['CapsLock', 'KeyA', 'KeyS', 'KeyD', 'KeyF', 'KeyG', 'KeyH', 'KeyJ', 'KeyK', 'KeyL', 'Semicolon', 'Quote', 'Enter'],
+    ['ShiftLeft', 'KeyZ', 'KeyX', 'KeyC', 'KeyV', 'KeyB', 'KeyN', 'KeyM', 'Comma', 'Period', 'Slash', 'ArrowUp', 'ShiftRight'],
+    ['ControlLeft', 'AltLeft', 'Space', 'AltRight', 'ControlRight', 'ArrowLeft', 'ArrowDown', 'ArrowRight'],
+]
 
-let lineOneEn = [113, 119, 101, 114, 116, 121, 117, 105, 111, 112, 91, 93, 92]
-let lineOneEnShift = [81, 87, 69, 82, 84, 89, 85, 73, 79, 80, 123, 125, 124]
+//document.onkeyup = function (event) {
+//    keysKey.push(event.key);
+//    console.log(keysKey)
+//}
 
-let lineOneRu = [1081, 1094, 1091, 1082, 1077, 1085, 1075, 1096, 1097, 1079, 1093, 1098, 92]
-let lineOneRuShift = [1049, 1062, 1059, 1050, 1045, 1053, 1043, 1064, 1065, 1047, 1061, 1066, 47]
 
-let lineTwoEn = [97, 115, 100, 102, 103, 104, 106, 107, 108, 59, 39]
-let lineTwoEnShift = [65, 83, 68, 70, 71, 72, 74, 75, 76, 58, 34]
 
-let lineTwoRu = [97, 115, 100, 102, 103, 104, 106, 107, 108, 59, 39]
-let lineTwoRuShift = [65, 83, 68, 70, 71, 72, 74, 75, 76, 58, 34]
-
-let lineThreeEn = [122, 120, 99, 118, 98, 110, 109, 44, 46, 47]
-let lineThreeEnShift = [90, 88, 67, 86, 66, 78, 77, 60, 62, 63]
-
-let lineThreeRu = [122, 120, 99, 118, 98, 110, 109, 44, 46, 47]
-let lineThreeRuShift = [90, 88, 67, 86, 66, 78, 77, 60, 62, 63]
-
-/*document.onkeypress = function (event) {
-    lineThreeRuShift.push(event.charCode);
-    console.log(lineThreeRuShift)
-}
-*/
-let wrapper = '<div class="wrapper"><div class="input-wrapper"><input type="text"></div><div class="keyboard-wrapper"><div class="line" id="line-zero"><div class="service-keys" id="backspace">backspace</div></div><div class="line" id="line-one"><div class="service-keys" id="tab">tab</div><div class="service-keys" id="del">del</div></div><div class="line" id="line-two"><div class="service-keys" id="caps-lock">caps lock</div><div class="service-keys" id="enter">enter</div></div><div class="line" id="line-three"><div class="service-keys shift" id="left-shift">shift</div><div class="service-keys shift" id="right-shift">shift</div></div><div class="line" id="line-four"><div class="service-keys ctrl" id="ctrl-left">ctrl</div><div class="service-keys" id="win">win</div><div class="service-keys alt" id="alt-left">alt</div><div class="service-keys" id="space"></div><div class="service-keys alt" id="alt-right">alt</div><div class="service-keys ctrl" id="ctrl-right">ctrl</div><div class="service-keys" id="page-left">l</div><div class="" id="up-down"><div class="page-up-down" id="page-up">u</div><div class="page-up-down" id="page-down">d</div></div><div class="service-keys" id="page-right">r</div></div></div></div>'
+let wrapper = '<div class="wrapper"><pre class="input"></pre><div class="keyboard-wrapper"></div></div>'
 
 document.body.insertAdjacentHTML('afterbegin', wrapper)
 
-const backspace = document.querySelector('#backspace')
-const del = document.querySelector('#del')
-const enter = document.querySelector('#enter')
-const rightShift = document.querySelector('#right-shift')
+//function initServisKeys(arr, keycode) {
+   // let out = '';
+ //   for(let i = 0; i < arr.length; i++) {
+        //out += '<div class="service-key keys" id="' + (keycode[i]) + '" data="' + (keycode[i]) + '">' + (arr[i]) + ///'</div>';
+//    }
+//    document.querySelector('.keyboard-wrapper').insertAdjacentHTML('afterBegin', out);
+//}
 
-function init(selector, arr) {
+function initKeys(arr, keycode) {
     let out = '';
     for(let i = 0; i < arr.length; i++) {
-        out += '<div class="key">' + String.fromCharCode(arr[i]) + '</div>';
+        if (arr[i].length === 1) {
+            out += '<div class="key keys" data="' + (keycode[i]) + '">' + arr[i] + '</div>';
+        } else {
+            out += '<div class="service-key keys" id="' + (keycode[i]) + '" data="' + (keycode[i]) + '">' + (arr[i]) + '</div>';
+        }
     }
-    selector.insertAdjacentHTML('beforebegin', out);
+    document.querySelector('.keyboard-wrapper').insertAdjacentHTML('beforeEnd', out);
 }
 
-init(backspace, lineZeroEn)
-init(del, lineOneEn)
-init(enter, lineTwoEn)
-init(rightShift, lineThreeEn)
+const backspace = document.querySelector('#Backspace')
+const del = document.querySelector('#Delete')
+const enter = document.querySelector('#Enter')
+const rightShift = document.querySelector('#ShiftRight')
+const output = document.querySelector('.keyinput')
+
+initKeys(En[0], codeOfKey[0])
+initKeys(En[1], codeOfKey[1])
+initKeys(En[2], codeOfKey[2])
+initKeys(En[3], codeOfKey[3])
+initKeys(En[4], codeOfKey[4])
+
+document.onkeydown = function (event) {
+    //console.log(event);
+    document.querySelector('.keyboard-wrapper .keys[data="'+ event.code +'"]').classList.add('active');
+}
+
+document.onkeyup = function (event) {
+    document.querySelector('.keyboard-wrapper .keys[data="'+ event.code +'"]').classList.remove('active');
+}
+
+
+
+ 
