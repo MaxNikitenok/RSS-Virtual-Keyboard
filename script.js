@@ -2,29 +2,29 @@ let En = [
     ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=','backspace'],
     ['tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\\', 'delete'],
     ['caps lock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', "'", 'enter'],
-    ['shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', 'U', 'shift'],
-    ['ctrl', 'Alt', '', 'Alt', 'ctrl', 'L', 'D', 'R']
+    ['shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', ' ˄ ', 'shift'],
+    ['ctrl', 'Alt', '', 'Alt', 'ctrl', ' ˂ ', ' ˅ ', ' ˃ ']
 ]
 let EnShift = [
     ['~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+','backspace'],
     ['tab', 'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', '{', '}', '|', 'delete'],
     ['caps lock', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', ':', '"', 'enter'],
-    ['shift', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', '<', '>', '?', 'U', 'shift'],
-    ['ctrl', 'Alt', '', 'Alt', 'ctrl', 'L', 'D', 'R']
+    ['shift', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', '<', '>', '?', '˄', 'shift'],
+    ['ctrl', 'Alt', '', 'Alt', 'ctrl', '˂', '˅', '˃']
 ]
 let Ru = [
     ['ё', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=','backspace'],
     ['tab', 'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ', '\\', 'delete'],
     ['caps lock', 'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э', 'enter'],
-    ['shift', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', '.', 'U', 'shift'],
-    ['ctrl', 'Alt', '', 'Alt', 'ctrl', 'L', 'D', 'R']
+    ['shift', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', '.', '˄', 'shift'],
+    ['ctrl', 'Alt', '', 'Alt', 'ctrl', '˂', '˅', '˃']
 ]
 let RuShift = [
     ['Ё', '!', '"', '№', ';', '%', ':', '?', '*', '(', ')', '_', '+','backspace'],
     ['tab', 'Й', 'Ц', 'У', 'К', 'Е', 'Н', 'Г', 'Ш', 'Щ', 'З', 'Х', 'Ъ', '/', 'delete'],
     ['caps lock', 'Ф', 'Ы', 'В', 'А', 'П', 'Р', 'О', 'Л', 'Д', 'Ж', 'Э', 'enter'],
-    ['shift', 'Я', 'Ч', 'С', 'М', 'И', 'Т', 'Ь', 'Б', 'Ю', ',', 'U', 'shift'],
-    ['ctrl', 'Alt', '', 'Alt', 'ctrl', 'L', 'D', 'R']
+    ['shift', 'Я', 'Ч', 'С', 'М', 'И', 'Т', 'Ь', 'Б', 'Ю', ',', ' ˄ ', 'shift'],
+    ['ctrl', 'Alt', '', 'Alt', 'ctrl', ' ˂ ', ' ˅ ', ' ˃ ']
 ]
 
 let codeOfKey = [
@@ -42,7 +42,7 @@ let codeOfKey = [
 
 
 
-let wrapper = '<div class="wrapper"><p class="output"></p><div class="keyboard-wrapper"></div></div>'
+let wrapper = '<div class="wrapper"><pre class="output"></pre><div class="keyboard-wrapper"></div></div>'
 
 document.body.insertAdjacentHTML('afterbegin', wrapper)
 
@@ -75,10 +75,9 @@ initKeys(En[3], codeOfKey[3])
 initKeys(En[4], codeOfKey[4])
 
 let keys = document.querySelectorAll('.keys')
+let letterKeys = document.querySelectorAll('.key')
 let keyPad = document.querySelectorAll('.keyboard-wrapper')
 const output = document.querySelector('.output')
-
-console.log(keys)
 
 if(keys && keyPad && output) {
     keys.forEach(key => {
@@ -89,7 +88,18 @@ if(keys && keyPad && output) {
                 output.innerText = str.substring(0, (str.length-1));
             } else if(this.classList.contains('Space')) {
                 output.innerText += ' ';
-            } else {
+            } else if (this.classList.contains('CapsLock')) {
+                this.classList.toggle('active')
+                if (this.classList.contains('active')) {
+                    letterKeys.forEach( key =>{
+                        key.innerText = key.innerText.toUpperCase()
+                    })
+                } else {
+                    letterKeys.forEach( key =>{
+                        key.innerText = key.innerText.toLowerCase()
+                    })
+                }
+            } else if (this.innerText.length < 2){
                 output.innerText += this.innerText
             }
         })
@@ -97,15 +107,33 @@ if(keys && keyPad && output) {
 }
 
 document.onkeydown = function (event) {
-    //console.log(event);
-    document.querySelector('.keyboard-wrapper .keys[data="'+ event.code +'"]').classList.add('active');
+let anyKey = document.querySelector('.keyboard-wrapper .keys[data="'+ event.code +'"]')
+    if (event.code === 'CapsLock') {
+        anyKey.classList.toggle('active');
+        if(anyKey.classList.contains('active')) {
+            letterKeys.forEach( key =>{
+                key.innerText = key.innerText.toUpperCase()
+            })
+        } else {
+            letterKeys.forEach( key =>{
+                key.innerText = key.innerText.toLowerCase()
+            })
+        }
+    } else {
+        anyKey.classList.add('active');
+    }
     if (event.code === 'Space') {
         output.innerText += ' ';
-    } else {
-        output.innerText += document.querySelector('.keyboard-wrapper .keys[data="'+ event.code +'"]').innerText
+    } else if (anyKey.innerText.length < 2) {
+        output.innerText += anyKey.innerText
     }
 
     document.onkeyup = function (event) {
-        document.querySelector('.keyboard-wrapper .keys[data="'+ event.code +'"]').classList.remove('active');
+        if (event.code === 'CapsLock') {
+        } else {
+            anyKey.classList.remove('active');
+        }
+        
     }
 }
+
