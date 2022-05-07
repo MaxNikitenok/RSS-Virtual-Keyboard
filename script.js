@@ -42,7 +42,7 @@ let codeOfKey = [
 
 
 
-let wrapper = '<div class="wrapper"><pre class="input"></pre><div class="keyboard-wrapper"></div></div>'
+let wrapper = '<div class="wrapper"><p class="output"></p><div class="keyboard-wrapper"></div></div>'
 
 document.body.insertAdjacentHTML('afterbegin', wrapper)
 
@@ -60,17 +60,13 @@ function initKeys(arr, keycode) {
         if (arr[i].length === 1) {
             out += '<div class="key keys" data="' + (keycode[i]) + '">' + arr[i] + '</div>';
         } else {
-            out += '<div class="service-key keys" id="' + (keycode[i]) + '" data="' + (keycode[i]) + '">' + (arr[i]) + '</div>';
+            out += '<div class="service-key keys ' + (keycode[i]) + '" id="' + (keycode[i]) + '" data="' + (keycode[i]) + '">' + (arr[i]) + '</div>';
         }
     }
     document.querySelector('.keyboard-wrapper').insertAdjacentHTML('beforeEnd', out);
 }
 
-const backspace = document.querySelector('#Backspace')
-const del = document.querySelector('#Delete')
-const enter = document.querySelector('#Enter')
-const rightShift = document.querySelector('#ShiftRight')
-const output = document.querySelector('.keyinput')
+
 
 initKeys(En[0], codeOfKey[0])
 initKeys(En[1], codeOfKey[1])
@@ -78,15 +74,38 @@ initKeys(En[2], codeOfKey[2])
 initKeys(En[3], codeOfKey[3])
 initKeys(En[4], codeOfKey[4])
 
+let keys = document.querySelectorAll('.keys')
+let keyPad = document.querySelectorAll('.keyboard-wrapper')
+const output = document.querySelector('.output')
+
+console.log(keys)
+
+if(keys && keyPad && output) {
+    keys.forEach(key => {
+        key.addEventListener('click', function(){
+            //console.log(this.innerText);
+            if(this.classList.contains('Backspace')) {
+                let str = output.innerText;
+                output.innerText = str.substring(0, (str.length-1));
+            } else if(this.classList.contains('Space')) {
+                output.innerText += ' ';
+            } else {
+                output.innerText += this.innerText
+            }
+        })
+    })
+}
+
 document.onkeydown = function (event) {
     //console.log(event);
     document.querySelector('.keyboard-wrapper .keys[data="'+ event.code +'"]').classList.add('active');
+    if (event.code === 'Space') {
+        output.innerText += ' ';
+    } else {
+        output.innerText += document.querySelector('.keyboard-wrapper .keys[data="'+ event.code +'"]').innerText
+    }
+
+    document.onkeyup = function (event) {
+        document.querySelector('.keyboard-wrapper .keys[data="'+ event.code +'"]').classList.remove('active');
+    }
 }
-
-document.onkeyup = function (event) {
-    document.querySelector('.keyboard-wrapper .keys[data="'+ event.code +'"]').classList.remove('active');
-}
-
-
-
- 

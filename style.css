@@ -10,7 +10,7 @@ html,
 body {
     font-family: 'Comfortaa', cursive;
     font-weight: 300;
-    font-style: italic;
+
     height: 100%;
 }
 .wrapper {
@@ -20,12 +20,15 @@ body {
     margin: 0 auto;
     
 }
-.input{
+.output{
+    display: inline-block;
     background-color: rgb(77, 82, 85);
     width: 892px;
     height: 150px;
     margin: 50px 0px 10px 0px;
     border-radius: 7px;
+    padding: 5px;
+    font-size: 20px;
 }
 .keyboard-wrapper {
     display: flex;
