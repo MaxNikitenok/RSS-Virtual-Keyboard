@@ -4,8 +4,7 @@ font-family: 'Comfortaa', cursive;
 font-family: 'Jura', sans-serif;
 */
 html {
-    perspective: 700px;
-    perspective-origin: center;
+
     overflow: hidden;
 }
 html,
@@ -13,32 +12,58 @@ body {
     font-family: 'Comfortaa', cursive;
     font-weight: 300;
     height: 100%;
-    transform: rotateX(10deg);
+    
+    
+    
+}
+@keyframes animate-background {
+    0%{
+        background-position: 0 50%;
+    }
+    50%{
+        background-position: 100% 50%;
+    }
+    100%{
+        background-position: 0 50%;
+    }
 }
 .wrapper {
     display: flex;
     flex-direction: column;
-    width: 900px;
+    width: 910px;
     margin: 0 auto;
-    
+    perspective: 700px;
+    perspective-origin: center;
+    margin: 0 auto;
+
 }
 .output{
     background-color: rgba(255, 255, 255, 0.041);
-    width: 886px;
+    min-width: 850px;
+    max-width: 850px;
     height: 100px;
-    margin: 13% 0 3% 0;
+    margin: 13% auto 3% auto;
     border-radius: 7px;
     padding: 5px;
-    font-size: 20px;
+    font-size: 23px;
     outline: none;
     overflow: auto;
+    font-family: 'Comfortaa', cursive;
 }
 .keyboard-wrapper {
     display: flex;
     flex-direction: row;
     gap: 6px;
     flex-wrap: wrap;
-    
+    transform: rotateX(10deg);
+    padding: 5px;
+    border-radius: 7px;
+    box-shadow: 0px 0px 10px rgba(102, 101, 101, 0.767);
+
+    background: linear-gradient(
+        to right, rgba(255, 0, 179, 0.534), rgba(238, 255, 1, 0.541), rgba(255, 0, 0, 0.459));
+        background-size: 500% 400%;
+        animation: animate-background 10s infinite ease-in-out;
 }
 .service-key {
     display: flex;
@@ -46,18 +71,21 @@ body {
     border-radius: 7px;
     height: 45px;
     font-size: 400;
+    background-color: rgb(226, 226, 226);
     user-select: none;
     align-items: center;
     justify-content: center;
     transition-duration: 100ms;
     box-shadow: 0px 0px 5px rgba(77, 77, 77, 0.267);
+
+ 
 }
 .service-key:active {
     position: relative;
-    box-shadow: 0px 1px 10px rgb(2, 170, 16);
+    background-color: rgba(50, 53, 52, 0.11);
     transform: scale3d(0.9, 0.9, 0.9);
     bottom: -1px;
-    color: rgb(2, 170, 16);
+    color: rgb(255, 82, 1);
 }
 .key {
     display: flex;
@@ -65,6 +93,7 @@ body {
     height: 45px;
     font-size: 25px;
     border-radius: 7px;
+    background-color: aliceblue;
     text-align: center;
     user-select: none;
     justify-content: center;
@@ -77,7 +106,7 @@ body {
     background-color: rgba(50, 53, 52, 0.11);
     transform: scale3d(0.9, 0.9, 0.9);
     bottom: -1px;
-    color: rgb(2, 170, 16);
+    color: rgb(255, 82, 1);
 }
 #Backspace {
     flex-grow: 1;
@@ -113,10 +142,9 @@ body {
 }
 #Space:active {
     position: relative;
-    box-shadow: 0px 1px 10px rgb(2, 170, 16);
+    background-color: rgba(50, 53, 52, 0.11);
     transform: scale3d(0.99, 0.9, 0.9);
     bottom: -1px;
-    color: rgb(2, 170, 16);
 }
 #ArrowLeft,
 #ArrowRight,
@@ -136,15 +164,14 @@ body {
 }
 .active {
     position: relative;
-    box-shadow: 0px 1px 10px rgb(2, 170, 16);
+    background-color: rgba(50, 53, 52, 0.11);
     transform: scale3d(0.9, 0.9, 0.9);
     bottom: -1px;
-    color: rgb(2, 170, 16);
+    color: rgb(255, 82, 1);
 }
 #Space.active {
     position: relative;
-    box-shadow: 0px 1px 10px rgb(2, 170, 16);
+    background-color: rgba(50, 53, 52, 0.11);
     transform: scale3d(0.99, 0.9, 0.9);
     bottom: -1px;
-    color: rgb(2, 170, 16);
 }

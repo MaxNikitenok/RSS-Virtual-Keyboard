@@ -1,4 +1,4 @@
-import {en, enShift, ru, ruShift, codeOfKey} from './keys.js';
+import {en, enShift, enCapsShift, ru, ruShift, ruCapsShift, codeOfKey} from './keys.js';
 
 let wrapper = '<div class="wrapper"><textarea class="output" value=""></textarea><div class="keyboard-wrapper"></div></div>'
 
@@ -23,9 +23,12 @@ let letterKeys = document.querySelectorAll('.key')
 const keyPad = document.querySelector('.keyboard-wrapper')
 const output = document.querySelector('.output')
 
+let capsOn = false;
+let rusOn = false 
+
 if(keys && keyPad && output) {
     keys.forEach(key => {
-        key.addEventListener('click', function(){
+        key.addEventListener('mousedown', function(){
             if(this.classList.contains('Backspace')) {
                 let str = output.value;
                 output.value = str.substring(0, (str.length-1));
@@ -36,32 +39,82 @@ if(keys && keyPad && output) {
                 if (this.classList.contains('active')) {
                     letterKeys.forEach( key =>{
                         key.innerText = key.innerText.toUpperCase()
+                        capsOn = true
                     })
                 } else {
                     letterKeys.forEach( key =>{
                         key.innerText = key.innerText.toLowerCase()
+                        capsOn = false
                     })
+                }
+            } else if (this.classList.contains('ShiftLeft') || this.classList.contains('ShiftRight')) {
+                if (rusOn === false && capsOn === false) {
+                    for(let i =0; i<en.length; i++) {
+                        keys[i].innerText = enShift[i]
+                    }
+                        capsOn = true;
+                } else if (rusOn === false && capsOn === true) {
+                    for(let i =0; i<en.length; i++) {
+                        keys[i].innerText = enCapsShift[i]
+                    }
+                        capsOn = false
+                } else if (rusOn === true && capsOn === false) {
+                    for(let i =0; i<en.length; i++) {
+                        keys[i].innerText = ruShift[i]
+                    }
+                        capsOn = true
+                } else {
+                    for(let i =0; i<en.length; i++) {
+                        keys[i].innerText = ruCapsShift[i]
+                    }
+                        capsOn = false
                 }
             } else if (this.innerText === '˂' || this.innerText === '˃' || this.innerText === '˄' || this.innerText === '˅') {
             } else if (this.innerText.length < 2){
                 output.value += this.innerText
             }
         })
+        key.addEventListener('mouseup', function(){
+            if (this.classList.contains('ShiftLeft') || this.classList.contains('ShiftRight')) {
+                if (rusOn === false && capsOn === true) {
+                    for(let i =0; i<en.length; i++) {
+                        keys[i].innerText = en[i]
+                    }
+                        capsOn = false;
+                } else if (rusOn === false && capsOn === false) {
+                    for(let i =0; i<en.length; i++) {
+                        if (en[i].length<2) keys[i].innerText = en[i].toUpperCase()
+                    }
+                        capsOn = true
+                } else if (rusOn === true && capsOn === true) {
+                    for(let i =0; i<en.length; i++) {
+                        keys[i].innerText = ru[i]
+                    }
+                        capsOn = false
+                } else {
+                    for(let i =0; i<en.length; i++) {
+                        if (ru[i].length<2) keys[i].innerText = ru[i].toUpperCase()
+                    }
+                        capsOn = true
+                }
+            }
+        })
     })
 }
 
 document.onkeydown = function (event) {
-    event.preventDefault()
     let anyKey = document.querySelector('.keyboard-wrapper .keys[data="'+ event.code +'"]')
     if (event.code === 'CapsLock') {
         anyKey.classList.toggle('active');
         if(anyKey.classList.contains('active')) {
             letterKeys.forEach( key =>{
                 key.innerText = key.innerText.toUpperCase()
+                capsOn = true
             })
         } else {
             letterKeys.forEach( key =>{
                 key.innerText = key.innerText.toLowerCase()
+                capsOn = false
             })
         }
     } else {
@@ -74,31 +127,59 @@ document.onkeydown = function (event) {
         output.value += anyKey.innerText
     }
     if (event.code === 'ShiftLeft' || event.code === 'ShiftRight') {
-        
-        if (keyPad.classList.contains('rus')) {
+        if (rusOn === false && capsOn === false) {
+            for(let i =0; i<en.length; i++) {
+                keys[i].innerText = enShift[i]
+            }
+                capsOn = true;
+        } else if (rusOn === false && capsOn === true) {
+            for(let i =0; i<en.length; i++) {
+                keys[i].innerText = enCapsShift[i]
+            }
+                capsOn = false
+        } else if (rusOn === true && capsOn === false) {
             for(let i =0; i<en.length; i++) {
                 keys[i].innerText = ruShift[i]
             }
+                capsOn = true
         } else {
             for(let i =0; i<en.length; i++) {
-            keys[i].innerText = enShift[i]
+                keys[i].innerText = ruCapsShift[i]
             }
+                capsOn = false
         }
     }
+    if (event.code === 'AltLeft' || event.code === 'AltRight') event.preventDefault()
+    if (event.code === 'Tab') event.preventDefault()
+
     document.onkeyup = function (event) {
         if (event.code === 'CapsLock') {
         } else {
-            keys.forEach(key => key.classList.remove('active'))
+            keys.forEach(key => {
+                if (!key.classList.contains('CapsLock')) key.classList.remove('active')
+            })
         }
         if (event.code === 'ShiftLeft' || event.code === 'ShiftRight') {
-            if (keyPad.classList.contains('rus')) {
+            if (rusOn === false && capsOn === true) {
+                for(let i =0; i<en.length; i++) {
+                    keys[i].innerText = en[i]
+                }
+                    capsOn = false;
+            } else if (rusOn === false && capsOn === false) {
+                for(let i =0; i<en.length; i++) {
+                    if (en[i].length<2) keys[i].innerText = en[i].toUpperCase()
+                }
+                    capsOn = true
+            } else if (rusOn === true && capsOn === true) {
                 for(let i =0; i<en.length; i++) {
                     keys[i].innerText = ru[i]
                 }
+                    capsOn = false
             } else {
                 for(let i =0; i<en.length; i++) {
-                keys[i].innerText = en[i]
+                    if (ru[i].length<2) keys[i].innerText = ru[i].toUpperCase()
                 }
+                    capsOn = true
             }
         }
     }
@@ -119,16 +200,16 @@ function changeLang(fun, ...codes) {
 }
 
 function initKeyLang() {
-    if (keyPad.classList.contains('rus')) {
+    if (rusOn === true) {
         for(let i =0; i<en.length; i++) {
             keys[i].innerText = en[i]
         }
-    keyPad.classList.remove('rus');
+        rusOn = false ;
     } else {
         for(let i =0; i<ru.length; i++) {
             keys[i].innerText = ru[i]
         }
-        keyPad.classList.add('rus');
+        rusOn = true;
     }
 }
 
