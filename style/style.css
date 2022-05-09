@@ -12,7 +12,7 @@ body {
     font-family: 'Comfortaa', cursive;
     font-weight: 300;
     height: 100%;
-    
+    background-color: rgb(241, 255, 253);
     
     
 }
@@ -31,17 +31,16 @@ body {
     display: flex;
     flex-direction: column;
     width: 910px;
+    min-height: 100%;
     margin: 0 auto;
-    perspective: 700px;
-    perspective-origin: center;
-    margin: 0 auto;
+
 
 }
 .output{
-    background-color: rgba(255, 255, 255, 0.041);
-    min-width: 850px;
-    max-width: 850px;
-    height: 100px;
+    background-color: rgb(252, 249, 249);
+    min-width: 900px;
+    max-width: 900px;
+    height: 80px;
     margin: 13% auto 3% auto;
     border-radius: 7px;
     padding: 5px;
@@ -55,14 +54,14 @@ body {
     flex-direction: row;
     gap: 6px;
     flex-wrap: wrap;
-    transform: rotateX(10deg);
+
     padding: 5px;
     border-radius: 7px;
     box-shadow: 0px 0px 10px rgba(102, 101, 101, 0.767);
 
     background: linear-gradient(
-        to right, rgba(255, 0, 179, 0.534), rgba(238, 255, 1, 0.541), rgba(255, 0, 0, 0.459));
-        background-size: 500% 400%;
+        to right, rgba(21, 255, 0, 0.534), rgba(238, 255, 1, 0.541), rgba(255, 0, 0, 0.459));
+        background-size: 500% 500%;
         animation: animate-background 10s infinite ease-in-out;
 }
 .service-key {
@@ -75,7 +74,7 @@ body {
     user-select: none;
     align-items: center;
     justify-content: center;
-    transition-duration: 100ms;
+    transition-duration: 70ms;
     box-shadow: 0px 0px 5px rgba(77, 77, 77, 0.267);
 
  
@@ -85,7 +84,7 @@ body {
     background-color: rgba(50, 53, 52, 0.11);
     transform: scale3d(0.9, 0.9, 0.9);
     bottom: -1px;
-    color: rgb(255, 82, 1);
+    color: rgb(230, 255, 6);
 }
 .key {
     display: flex;
@@ -98,15 +97,15 @@ body {
     user-select: none;
     justify-content: center;
     align-items: center;
-    transition-duration: 100ms;
-    box-shadow: 0px 0px 5px rgba(77, 77, 77, 0.267);
+    transition-duration: 70ms;
+
 }
 .key:active {
     position: relative;
     background-color: rgba(50, 53, 52, 0.11);
     transform: scale3d(0.9, 0.9, 0.9);
     bottom: -1px;
-    color: rgb(255, 82, 1);
+    color: rgb(230, 255, 6);
 }
 #Backspace {
     flex-grow: 1;
@@ -150,7 +149,7 @@ body {
 #ArrowRight,
 #ArrowUp,
 #ArrowDown {
-    font-weight: 700;
+    font-weight: 500;
     display: flex;
     min-width: 53px;
     height: 45px;
@@ -162,12 +161,17 @@ body {
     align-items: center;
     box-shadow: 0px 0px 5px rgba(77, 77, 77, 0.267);
 }
+.description {
+    margin-top: 50px;
+    line-height: 22px;
+    color: darkgrey;
+}
 .active {
     position: relative;
     background-color: rgba(50, 53, 52, 0.11);
     transform: scale3d(0.9, 0.9, 0.9);
     bottom: -1px;
-    color: rgb(255, 82, 1);
+    color: rgb(230, 255, 6);
 }
 #Space.active {
     position: relative;

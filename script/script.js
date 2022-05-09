@@ -1,6 +1,6 @@
 import {en, enShift, enCapsShift, ru, ruShift, ruCapsShift, codeOfKey} from './keys.js';
 
-let wrapper = '<div class="wrapper"><textarea class="output" value=""></textarea><div class="keyboard-wrapper"></div></div>'
+let wrapper = '<div class="wrapper"><textarea class="output" value=""></textarea><div class="keyboard-wrapper"></div><div class="description"><p>Клавиатура создана в операционной системе Windows<br>Комбинация для переключения языка: ctrl + alt</p></div></div>'
 
 document.body.insertAdjacentHTML('afterbegin', wrapper)
 
@@ -16,7 +16,15 @@ function initKeys(arr, keycode) {
     document.querySelector('.keyboard-wrapper').insertAdjacentHTML('beforeEnd', out);
 }
 
-initKeys(en, codeOfKey)
+if(localStorage.getItem('lang') === 'eng' || localStorage.getItem('lang') === null) {
+    initKeys(en, codeOfKey)
+} else if (localStorage.getItem('lang') === 'rus') {
+    initKeys(ru, codeOfKey)
+}
+
+
+
+
 
 let keys = document.querySelectorAll('.keys')
 let letterKeys = document.querySelectorAll('.key')
@@ -34,6 +42,8 @@ if(keys && keyPad && output) {
                 output.value = str.substring(0, (str.length-1));
             } else if(this.classList.contains('Space')) {
                 output.value += ' ';
+            } else if(this.classList.contains('Tab')) {
+                output.value += '    ';
             } else if (this.classList.contains('CapsLock')) {
                 this.classList.toggle('active')
                 if (this.classList.contains('active')) {
@@ -69,7 +79,6 @@ if(keys && keyPad && output) {
                     }
                         capsOn = false
                 }
-            } else if (this.innerText === '˂' || this.innerText === '˃' || this.innerText === '˄' || this.innerText === '˅') {
             } else if (this.innerText.length < 2){
                 output.value += this.innerText
             }
@@ -102,6 +111,8 @@ if(keys && keyPad && output) {
     })
 }
 
+let shiftOn = false
+
 document.onkeydown = function (event) {
     let anyKey = document.querySelector('.keyboard-wrapper .keys[data="'+ event.code +'"]')
     if (event.code === 'CapsLock') {
@@ -122,11 +133,10 @@ document.onkeydown = function (event) {
     }
     if (event.code === 'Space') {
         output.value += ' ';
-    } else if(event.code === 'ArrowLeft' || event.code === 'ArrowDown' || event.code === 'ArrowRight' || event.code === 'ArrowUp') {
     } else if (anyKey.innerText.length < 2) {
         output.value += anyKey.innerText
     }
-    if (event.code === 'ShiftLeft' || event.code === 'ShiftRight') {
+    if ((event.code === 'ShiftLeft' || event.code === 'ShiftRight') && shiftOn === false) {
         if (rusOn === false && capsOn === false) {
             for(let i =0; i<en.length; i++) {
                 keys[i].innerText = enShift[i]
@@ -148,9 +158,13 @@ document.onkeydown = function (event) {
             }
                 capsOn = false
         }
+        shiftOn = true
     }
     if (event.code === 'AltLeft' || event.code === 'AltRight') event.preventDefault()
-    if (event.code === 'Tab') event.preventDefault()
+    if (event.code === 'Tab') {
+        event.preventDefault()
+        output.value += '    ';
+    }
 
     document.onkeyup = function (event) {
         if (event.code === 'CapsLock') {
@@ -159,7 +173,7 @@ document.onkeydown = function (event) {
                 if (!key.classList.contains('CapsLock')) key.classList.remove('active')
             })
         }
-        if (event.code === 'ShiftLeft' || event.code === 'ShiftRight') {
+        if ((event.code === 'ShiftLeft' || event.code === 'ShiftRight') && shiftOn === true) {
             if (rusOn === false && capsOn === true) {
                 for(let i =0; i<en.length; i++) {
                     keys[i].innerText = en[i]
@@ -181,6 +195,7 @@ document.onkeydown = function (event) {
                 }
                     capsOn = true
             }
+            shiftOn = false
         }
     }
 }
@@ -205,11 +220,16 @@ function initKeyLang() {
             keys[i].innerText = en[i]
         }
         rusOn = false ;
+        localStorage.removeItem('lang')
+        localStorage.setItem('lang', 'eng');
+        console.log()
     } else {
         for(let i =0; i<ru.length; i++) {
             keys[i].innerText = ru[i]
         }
         rusOn = true;
+        localStorage.removeItem('lang')
+        localStorage.setItem('lang', 'rus');
     }
 }
 
