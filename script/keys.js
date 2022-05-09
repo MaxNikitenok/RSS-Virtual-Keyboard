@@ -3,7 +3,7 @@ export const en = [
     'tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\\', 'delete',
     'caps lock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', "'", 'enter',
     'shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', ' ᐃ ', 'shift',
-    'ctrl', 'Alt', '', 'Alt', 'ctrl', ' ᐊ ', ' ᐁ ', ' ᐅ ', '☝'
+    'ctrl', 'Alt', '', 'Alt', 'ctrl', ' ᐊ ', ' ᐁ ', ' ᐅ '
 ];
 export const enShift = [
     '~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+','backspace',
