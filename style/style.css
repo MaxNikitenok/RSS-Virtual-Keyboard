@@ -4,14 +4,16 @@ font-family: 'Comfortaa', cursive;
 font-family: 'Jura', sans-serif;
 */
 html {
-    background-color: rgb(53, 52, 58)
+    perspective: 700px;
+    perspective-origin: center;
+    overflow: hidden;
 }
 html,
 body {
     font-family: 'Comfortaa', cursive;
     font-weight: 300;
-
     height: 100%;
+    transform: rotateX(10deg);
 }
 .wrapper {
     display: flex;
@@ -21,55 +23,61 @@ body {
     
 }
 .output{
-    display: inline-block;
-    background-color: rgb(77, 82, 85);
-    width: 892px;
-    height: 150px;
-    margin: 50px 0px 10px 0px;
+    background-color: rgba(255, 255, 255, 0.041);
+    width: 886px;
+    height: 100px;
+    margin: 13% 0 3% 0;
     border-radius: 7px;
     padding: 5px;
     font-size: 20px;
-    white-space: pre-wrap;
+    outline: none;
+    overflow: auto;
 }
 .keyboard-wrapper {
     display: flex;
     flex-direction: row;
     gap: 6px;
     flex-wrap: wrap;
+    
 }
 .service-key {
     display: flex;
     font-size: 16px;
-    border-radius: 3px;
+    border-radius: 7px;
     height: 45px;
-    background-color: rgb(42, 47, 49);
+    font-size: 400;
     user-select: none;
     align-items: center;
     justify-content: center;
     transition-duration: 100ms;
+    box-shadow: 0px 0px 5px rgba(77, 77, 77, 0.267);
 }
 .service-key:active {
-    box-shadow: 0px 5px 10px aqua;
+    position: relative;
+    box-shadow: 0px 1px 10px rgb(2, 170, 16);
     transform: scale3d(0.9, 0.9, 0.9);
-    color: aqua;
+    bottom: -1px;
+    color: rgb(2, 170, 16);
 }
 .key {
     display: flex;
     min-width: 53px;
     height: 45px;
     font-size: 25px;
-    border-radius: 3px;
+    border-radius: 7px;
     text-align: center;
-    background-color: rgb(77, 82, 85);
     user-select: none;
     justify-content: center;
     align-items: center;
     transition-duration: 100ms;
+    box-shadow: 0px 0px 5px rgba(77, 77, 77, 0.267);
 }
 .key:active {
-    box-shadow: 0px 5px 10px aqua;
+    position: relative;
+    background-color: rgba(50, 53, 52, 0.11);
     transform: scale3d(0.9, 0.9, 0.9);
-    color: aqua;
+    bottom: -1px;
+    color: rgb(2, 170, 16);
 }
 #Backspace {
     flex-grow: 1;
@@ -103,23 +111,40 @@ body {
 #Space {
     min-width: 382px;
 }
+#Space:active {
+    position: relative;
+    box-shadow: 0px 1px 10px rgb(2, 170, 16);
+    transform: scale3d(0.99, 0.9, 0.9);
+    bottom: -1px;
+    color: rgb(2, 170, 16);
+}
 #ArrowLeft,
 #ArrowRight,
 #ArrowUp,
 #ArrowDown {
+    font-weight: 700;
     display: flex;
     min-width: 53px;
     height: 45px;
     font-size: 25px;
-    border-radius: 3px;
+    border-radius: 7px;
     text-align: center;
-    background-color: rgb(60, 63, 65);
     user-select: none;
     justify-content: center;
     align-items: center;
+    box-shadow: 0px 0px 5px rgba(77, 77, 77, 0.267);
 }
 .active {
-    box-shadow: 0px 5px 10px aqua;
+    position: relative;
+    box-shadow: 0px 1px 10px rgb(2, 170, 16);
     transform: scale3d(0.9, 0.9, 0.9);
-    color: aqua;
+    bottom: -1px;
+    color: rgb(2, 170, 16);
+}
+#Space.active {
+    position: relative;
+    box-shadow: 0px 1px 10px rgb(2, 170, 16);
+    transform: scale3d(0.99, 0.9, 0.9);
+    bottom: -1px;
+    color: rgb(2, 170, 16);
 }
