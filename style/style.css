@@ -56,6 +56,7 @@ body {
     to right, rgba(21, 255, 0, 0.534), rgba(238, 255, 1, 0.541), rgba(255, 0, 0, 0.459));
     background-size: 500% 500%;
     animation: animate-background 10s infinite ease-in-out;
+    color: rgba(33, 37, 36, 0.753);
 }
 .service-key {
     display: flex;
