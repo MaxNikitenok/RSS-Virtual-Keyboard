@@ -1,4 +1,5 @@
 import {en, enShift, enCapsShift, ru, ruShift, ruCapsShift, codeOfKey} from './keys.js';
+import {getCaretPosition, setCaretPosition} from './delete.js';
 
 let wrapper = '<div class="wrapper"><textarea class="output" value=""></textarea><div class="keyboard-wrapper"></div><div class="description"><p>Клавиатура создана в операционной системе Windows<br>Комбинация для переключения языка: ctrl + alt</p></div></div>';
 
@@ -38,6 +39,15 @@ keys.forEach(key => {
             output.value = str.substring(0, (str.length-1));
         } else if(this.classList.contains('Space')) {
             output.value += ' ';
+        } else if(this.classList.contains('Enter')) {
+            output.value += '\n';
+        } else if(this.classList.contains('Delete')){
+            console.log(getCaretPosition(output)['start'])
+            let str = output.value;
+            let start = getCaretPosition(output)['start']
+            let end = getCaretPosition(output)['end']
+            output.value = str.substring(0, start) + str.substring(end + 1, output.value.length);
+            setCaretPosition(output, start, end)
         } else if(this.classList.contains('Tab')) {
             output.value += '    ';
         } else if (this.classList.contains('CapsLock')) {
@@ -79,7 +89,7 @@ keys.forEach(key => {
             output.value += this.innerText;
         };
     });
- key.addEventListener('mouseup', function(){
+    key.addEventListener('mouseup', function(){
         if (this.classList.contains('ShiftLeft') || this.classList.contains('ShiftRight')) {
             if (rusOn === false && capsOn === true) {
                 for(let i =0; i<en.length; i++) {
@@ -229,3 +239,4 @@ function initKeyLang() {
 
 changeLang(initKeyLang, "AltLeft", "ControlLeft");
 changeLang(initKeyLang, "AltRight","ControlRight");
+
