@@ -78,6 +78,9 @@ body {
     bottom: -1px;
     color: rgb(230, 255, 6);
 }
+.service-key:hover {
+    cursor: pointer;
+}
 .key {
     display: flex;
     min-width: 53px;
@@ -91,6 +94,9 @@ body {
     align-items: center;
     transition-duration: 70ms;
     box-shadow: 1px 1px 4px rgba(128, 128, 128, 0.719);
+ }
+ .key:hover {
+     cursor: pointer;
  }
 .key:active {
     position: relative;

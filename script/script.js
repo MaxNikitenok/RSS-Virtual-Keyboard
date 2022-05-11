@@ -34,20 +34,43 @@ let shiftOn = false;
 keys.forEach((key) => {
   key.addEventListener('mousedown', function down() {
     if (this.classList.contains('Backspace')) {
-      let str = output.value;
-      output.value = str.substring(0, (str.length - 1));
+      const str = output.value;
+      let start = getCaretPosition(output).start;
+      let end = getCaretPosition(output).end;
+      output.value = str.substring(0, start - 1) + str.substring(end, output.value.length);
+      start -= 1;
+      end -= 1;
+      setCaretPosition(output, start, end);
     } else if (this.classList.contains('Space')) {
-      output.value += ' ';
+      const str = output.value;
+      let start = getCaretPosition(output).start;
+      let end = getCaretPosition(output).end;
+      output.value = str.substring(0, start) + ' ' + str.substring(end, output.value.length);
+      start += 1;
+      end += 1;
+      setCaretPosition(output, start, end);
     } else if (this.classList.contains('Enter')) {
-      output.value += '\n';
+      const str = output.value;
+      let start = getCaretPosition(output).start;
+      let end = getCaretPosition(output).end;
+      output.value = `${str.substring(0, start)}\n${str.substring(end, output.value.length)}`;
+      start += 1;
+      end += 1;
+      setCaretPosition(output, start, end);
     } else if (this.classList.contains('Delete')){
-      let str = output.value;
-      let start = getCaretPosition(output)['start'];
-      let end = getCaretPosition(output)['end'];
+      const str = output.value;
+      let start = getCaretPosition(output).start;
+      let end = getCaretPosition(output).end;
       output.value = str.substring(0, start) + str.substring(end + 1, output.value.length);
       setCaretPosition(output, start, end);
     } else if (this.classList.contains('Tab')) {
-      output.value += '    ';
+      const str = output.value;
+      let start = getCaretPosition(output).start;
+      let end = getCaretPosition(output).end;
+      output.value = str.substring(0, start) + '    ' + str.substring(end, output.value.length);
+      start += 4;
+      end += 4;
+      setCaretPosition(output, start, end);
     } else if (this.classList.contains('CapsLock')) {
       this.classList.toggle('active');
       if (this.classList.contains('active')) {
@@ -84,7 +107,13 @@ keys.forEach((key) => {
         capsOn = false;
       }
     } else if (this.innerText.length < 2) {
-      output.value += this.innerText;
+      const str = output.value;
+      let start = getCaretPosition(output).start;
+      let end = getCaretPosition(output).end;
+      output.value = `${str.substring(0, start)}${this.innerText}${str.substring(end, output.value.length)}`;
+      start += 1;
+      end += 1;
+      setCaretPosition(output, start, end);
     }
   });
   key.addEventListener('mouseup', function up() {
@@ -111,6 +140,7 @@ keys.forEach((key) => {
         capsOn = true;
       }
     }
+    output.focus();
   });
 });
 
@@ -133,9 +163,22 @@ document.onkeydown = function keydown(event) {
     anyKey.classList.add('active');
   }
   if (event.code === 'Space') {
-    output.value += ' ';
-  } else if (anyKey.innerText.length < 2) {
-    output.value += anyKey.innerText;
+    event.preventDefault();
+    const str = output.value;
+    let start = getCaretPosition(output).start;
+    let end = getCaretPosition(output).end;
+    output.value = str.substring(0, start) + ' ' + str.substring(end, output.value.length);
+    setCaretPosition(output, start, end);
+  }
+  if (anyKey.innerText.length < 2) {
+    event.preventDefault();
+    const str = output.value;
+    let start = getCaretPosition(output).start;
+    let end = getCaretPosition(output).end;
+    output.value = `${str.substring(0, start)}${anyKey.innerText}${str.substring(end, output.value.length)}`;
+    start += 1;
+    end += 1;
+    setCaretPosition(output, start, end);
   }
   if ((event.code === 'ShiftLeft' || event.code === 'ShiftRight') && shiftOn === false) {
     if (rusOn === false && capsOn === false) {
@@ -164,8 +207,15 @@ document.onkeydown = function keydown(event) {
   if (event.code === 'AltLeft' || event.code === 'AltRight') event.preventDefault();
   if (event.code === 'Tab') {
     event.preventDefault();
-    output.value += '    ';
+    const str = output.value;
+    let start = getCaretPosition(output).start;
+    let end = getCaretPosition(output).end;
+    output.value = `${str.substring(0, start)}    ${str.substring(end, output.value.length)}`;
+    start += 4;
+    end += 4;
+    setCaretPosition(output, start, end);
   }
+  output.focus();
 
   document.onkeyup = function up(ev) {
     if (ev.code !== 'CapsLock') {
@@ -201,7 +251,7 @@ document.onkeydown = function keydown(event) {
 
 function changeLang(fun, ...codes) {
   const pressed = new Set();
-  document.addEventListener('keydown', function (event) {
+  document.addEventListener('keydown', function kd(event) {
     pressed.add(event.code);
     for (let code of codes) {
       if (!pressed.has(code)) {
