@@ -167,7 +167,7 @@ document.onkeydown = function keydown(event) {
     const str = output.value;
     let start = getCaretPosition(output).start;
     let end = getCaretPosition(output).end;
-    output.value = str.substring(0, start) + ' ' + str.substring(end, output.value.length);
+    output.value = `${str.substring(0, start)} ${str.substring(end, output.value.length)}`;
     setCaretPosition(output, start, end);
   }
   if (anyKey.innerText.length < 2) {
