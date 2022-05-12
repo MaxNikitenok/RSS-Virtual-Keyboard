@@ -1,0 +1,182 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500&family=Jura:wght@300;400;500');
+/*
+font-family: 'Comfortaa', cursive;
+font-family: 'Jura', sans-serif;
+*/
+html {
+    overflow: hidden;
+}
+html,
+body {
+    font-family: 'Comfortaa', cursive;
+    font-weight: 300;
+    height: 100%;
+    background-color: rgb(241, 255, 253);
+}
+@keyframes animate-background {
+    0%{
+        background-position: 0 50%;
+    }
+    50%{
+        background-position: 100% 50%;
+    }
+    100%{
+        background-position: 0 50%;
+    }
+}
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 910px;
+    height: 100%;
+    margin: 0 auto;
+}
+.output{
+    background-color: rgb(252, 249, 249);
+    min-width: 900px;
+    max-width: 900px;
+    height: 80px;
+    margin: 13% auto 3% auto;
+    border-radius: 7px;
+    padding: 5px;
+    font-size: 23px;
+    outline: none;
+    overflow: auto;
+    font-family: 'Comfortaa', cursive;
+}
+.keyboard-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+    flex-wrap: wrap;
+    padding: 5px;
+    border-radius: 7px;
+    box-shadow: 0px 0px 10px rgba(102, 101, 101, 0.767);
+    background: linear-gradient(
+    to right, rgba(21, 255, 0, 0.534), rgba(238, 255, 1, 0.541), rgba(255, 0, 0, 0.459));
+    background-size: 500% 500%;
+    animation: animate-background 10s infinite ease-in-out;
+    color: rgba(33, 37, 36, 0.753);
+}
+.service-key {
+    display: flex;
+    font-size: 16px;
+    border-radius: 7px;
+    height: 45px;
+    font-size: 400;
+    background-color: rgb(226, 226, 226);
+    user-select: none;
+    align-items: center;
+    justify-content: center;
+    transition-duration: 70ms;
+    box-shadow: 1px 1px 4px rgba(128, 128, 128, 0.719);
+}
+.service-key:active {
+    position: relative;
+    background-color: rgba(50, 53, 52, 0.11);
+    transform: scale3d(0.9, 0.9, 0.9);
+    bottom: -1px;
+    color: rgb(230, 255, 6);
+}
+.service-key:hover {
+    cursor: pointer;
+}
+.key {
+    display: flex;
+    min-width: 53px;
+    height: 45px;
+    font-size: 25px;
+    border-radius: 7px;
+    background-color: aliceblue;
+    text-align: center;
+    user-select: none;
+    justify-content: center;
+    align-items: center;
+    transition-duration: 70ms;
+    box-shadow: 1px 1px 4px rgba(128, 128, 128, 0.719);
+ }
+ .key:hover {
+     cursor: pointer;
+ }
+.key:active {
+    position: relative;
+    background-color: rgba(50, 53, 52, 0.11);
+    transform: scale3d(0.9, 0.9, 0.9);
+    bottom: -1px;
+    color: rgb(230, 255, 6);
+}
+#Backspace {
+    flex-grow: 1;
+}
+#Tab {
+    min-width: 65px;
+}
+#Delete {
+    flex-grow: 1;
+}
+#CapsLock {
+    min-width: 110px;
+}
+#Enter {
+    flex-grow: 1;
+}
+#ShiftLeft {
+    min-width: 135px;
+}
+#ShiftRight{
+    min-width: 110px;
+}
+#ControlLeft,
+#ControlRight {
+    min-width: 65px;
+}
+#AltLeft,
+#AltRight {
+    min-width: 65px;
+}
+#Space {
+    min-width: 382px;
+}
+#Space:active {
+    position: relative;
+    background-color: rgba(50, 53, 52, 0.11);
+    transform: scale3d(0.99, 0.9, 0.9);
+    bottom: -1px;
+}
+#ArrowLeft,
+#ArrowRight,
+#ArrowUp,
+#ArrowDown {
+    font-weight: 100;
+    display: flex;
+    min-width: 53px;
+    height: 45px;
+    font-size: 15px;
+    border-radius: 7px;
+    text-align: center;
+    user-select: none;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 1px 1px 4px rgba(128, 128, 128, 0.719);
+}
+.description {
+    margin-top: 50px;
+    line-height: 22px;
+    color: darkgrey;
+}
+.active {
+    position: relative;
+    background-color: rgba(50, 53, 52, 0.11);
+    transform: scale3d(0.9, 0.9, 0.9);
+    bottom: -1px;
+    color: rgb(230, 255, 6);
+}
+#Space.active {
+    position: relative;
+    background-color: rgba(50, 53, 52, 0.11);
+    transform: scale3d(0.99, 0.9, 0.9);
+    bottom: -1px;
+}
+.Change {
+    width: 51px;
+}
