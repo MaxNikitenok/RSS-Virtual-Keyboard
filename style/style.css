@@ -177,3 +177,6 @@ body {
     transform: scale3d(0.99, 0.9, 0.9);
     bottom: -1px;
 }
+.Change {
+    width: 51px;
+}

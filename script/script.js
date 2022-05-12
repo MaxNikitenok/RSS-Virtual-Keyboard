@@ -140,6 +140,9 @@ keys.forEach((key) => {
         capsOn = true;
       }
     }
+    if (this.classList.contains('Change')) {
+      initKeyLang()
+    }
     output.focus();
   });
 });
